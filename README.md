@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/DanielHazlewood/DynastyExample/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+----------
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+*Rules of thumb:*
+-----------------
 
-# Header 1
-## Header 2
-### Header 3
+**Memory Optimizations**
 
-- Bulleted
-- List
+	> Cache misses are the most deadly part of building a well optimized game using this Dynasty. A CPU are extremely fast, but RAM is yet to catch up. These are caused by the CPU not having the memory it's trying to grab at that time in it's cache, thus causing a cache miss which makes it go to the RAM to get it's data (which is slow).
 
-1. Numbered
-2. List
+> When creating collections that have to be iterated over, containing objects which have active states, it is ideal to create separate collections containing the active & inactive objects.
 
-**Bold** and _Italic_ and `Code` text
+    public List<Entity> ActiveEntities;
+    public List<Entity> InactiveEntities;
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DanielHazlewood/DynastyExample/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Array Of Bytes
+> The order of memory is extremely important, when using classes a pointer is created to a location in memory which doesn't guarantee to be placed around other objects of the same type. This is an issue due to how your CPU will grab from the RAM in chunks(collecting data also around it), then store it in your CPU cache. If the next object you're grabbing is not around it in memory, it will have to go back to the RAM to grab it.
